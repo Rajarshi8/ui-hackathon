@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Subscription Plans</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Additional elegant styles */
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --primary-light: #60a5fa;
+            --accent: #f59e0b;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #22c55e;
+        }
+
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Improved header with gradient and animation */
+        header {
+            background: linear-gradient(135deg, #fff, #f0f9ff);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        header:hover {
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .logo:hover::after {
+            width: 100%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #64748b;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3b82f6;
+        }
+
+        /* Enhanced buttons with animations */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(59, 130, 246, 0.25);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.5s, height 0.5s;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn:hover::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(59, 130, 246, 0.15);
+            color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            box-shadow: 0 6px 12px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Fix hover issue with My Account button */
+        .nav-links .btn-outline.logged-in:hover {
+            background-color: var(--primary-dark);
+            color: white;
+            border-color: var(--primary-dark);
+        }
+
+        /* Enhanced hero section with gradient and animation */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe, #f0f9ff);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.1) 0%, transparent 60%),
+                radial-gradient(circle at 80% 70%, rgba(245, 158, 11, 0.1) 0%, transparent 60%);
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: var(--dark);
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        /* Improved pricing section */
+        .pricing {
+            padding: 100px 0;
+            background-color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pricing::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .pricing::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 250px;
+            height: 250px;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--dark);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--primary), var(--primary-light));
+            transform: translateX(-50%);
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Enhanced plan cards */
+        .plans {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
+        }
+
+        .plan {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            padding: 40px 30px;
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            transition: all 0.4s ease;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary-light), var(--primary));
+            opacity: 0.5;
+            transition: opacity 0.4s ease;
+        }
+
+        .plan:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .plan:hover::before {
+            opacity: 1;
+        }
+
+        .plan.popular {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .plan.popular:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+        }
+
+        .plan-name {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+
+        .plan-price {
+            font-size: 44px;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+
+        .plan-price span {
+            font-size: 16px;
+            color: var(--gray);
+            font-weight: 400;
+        }
+
+        .plan-description {
+            color: #64748b;
+            margin-bottom: 20px;
+        }
+
+        .features {
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .features li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            color: var(--dark);
+            transition: transform 0.2s ease;
+        }
+
+        .features li:hover {
+            transform: translateX(5px);
+        }
+
+        .features li:before {
+            content: "✓";
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            background-color: var(--primary);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            margin-right: 12px;
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        /* Improved form styles */
+        .form-wrapper {
+            max-width: 450px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .form-wrapper:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .auth-tabs {
+            display: flex;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .auth-tab {
+            flex: 1;
+            text-align: center;
+            padding: 15px 0;
+            font-weight: 600;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .auth-tab:hover {
+            color: var(--primary);
+        }
+
+        .auth-tab.active {
+            color: var(--primary);
+        }
+
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            background-color: #f8fafc;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+            background-color: #fff;
+        }
+
+        .form-control::placeholder {
+            color: #94a3b8;
+        }
+
+        /* Improved confirmation message */
+        .confirmation {
+            background-color: #f0fdf4;
+            border: 1px solid #86efac;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(34, 197, 94, 0.1);
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .confirmation-icon {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Feature cards */
+        .feature-card {
+            flex: 1;
+            min-width: 280px;
+            max-width: 350px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.4s ease;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.1) 0%, transparent 70%);
+            border-radius: 0 0 0 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Apply animation to success checkmark */
+        #success-page .container>div:first-child {
+            animation: pulse 2s infinite;
+        }
+
+        /* Responsive improvements */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 36px;
+            }
+
+            .plan.popular {
+                transform: scale(1);
+            }
+
+            .plan.popular:hover {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Footer styles */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 60px 0 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .footer-column h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-column p {
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--gray);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--gray);
+            font-size: 14px;
+        }
+
+        /* Fix hidden class that might be missing */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsive styles for footer */
+        @media (max-width: 768px) {
+            .footer-content {
+                flex-direction: column;
+            }
+
+            .footer-column {
+                width: 100%;
+                margin-bottom: 30px;
+            }
+        }
+
+        /* Enhanced Animations */
+
+        /* More keyframes for new animations */
+        @keyframes slideInRight {
+            from {
+                transform: translateX(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        /* Animated logo */
+        .logo {
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo::before {
+            content: '';
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-light);
+            opacity: 0.2;
+            border-radius: 50%;
+            z-index: -1;
+            top: 50%;
+            left: -10px;
+            transform: translateY(-50%);
+            animation: pulse 3s infinite;
+        }
+
+        /* Navigation animations */
+        .nav-links a {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        /* Hero section animations */
+        .hero h1 {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        /* Enhanced form animations */
+        .form-wrapper {
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        .form-control {
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            transform: translateY(-3px);
+        }
+
+        /* Button hover animations */
+        .btn {
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.6s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        /* Plans staggered animations */
+        .plan:nth-child(1) {
+            animation: slideInUp 0.5s ease-out 0.1s both;
+        }
+
+        .plan:nth-child(2) {
+            animation: slideInUp 0.5s ease-out 0.3s both;
+        }
+
+        .plan:nth-child(3) {
+            animation: slideInUp 0.5s ease-out 0.5s both;
+        }
+
+        /* Plan hover effects with floating animation */
+        .plan:hover {
+            animation: float 4s ease-in-out infinite;
+            transform: translateY(-10px);
+        }
+
+        /* Feature cards animations */
+        .feature-card:nth-child(1) {
+            animation: slideInLeft 0.5s ease-out 0.1s both;
+        }
+
+        .feature-card:nth-child(2) {
+            animation: fadeIn 0.5s ease-out 0.3s both;
+        }
+
+        .feature-card:nth-child(3) {
+            animation: slideInRight 0.5s ease-out 0.5s both;
+        }
+
+        .feature-card:hover {
+            animation: float 5s ease-in-out infinite;
+            transform: translateY(-7px);
+        }
+
+        /* Feature icons animation */
+        .feature-card>div:first-child {
+            transition: all 0.5s ease;
+        }
+
+        .feature-card:hover>div:first-child {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* Animated checkmarks in features list */
+        .features li:before {
+            transition: all 0.3s ease;
+        }
+
+        .features li:hover:before {
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        /* Form tab animations */
+        .auth-tab {
+            transition: all 0.3s ease;
+        }
+
+        .auth-tab.active::after {
+            animation: slideInLeft 0.3s ease;
+        }
+
+        /* Payment form animations */
+        #payment-form .form-group {
+            animation: fadeInUp 0.5s ease-out;
+            animation-fill-mode: both;
+        }
+
+        #payment-form .form-group:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        #payment-form .form-group:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        #payment-form .form-group:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        #payment-form .form-group:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        #payment-form .form-group:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        #payment-form .form-group:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+
+        /* Success animation */
+        #success-page .container>div:first-child {
+            animation: scaleIn 0.5s ease-out, pulse 2s infinite 0.5s;
+        }
+
+        #success-page h1 {
+            animation: fadeInUp 0.5s ease-out 0.2s both;
+        }
+
+        #success-page p {
+            animation: fadeInUp 0.5s ease-out 0.4s both;
+        }
+
+        #go-to-dashboard-button {
+            animation: fadeIn 0.5s ease-out 0.8s both;
+        }
+
+        /* Confirmation message animations */
+        .confirmation {
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        .confirmation-icon {
+            animation: rotate 0.5s ease-out, pulse 2s infinite 0.5s;
+        }
+
+        /* Footer animations */
+        footer h3 {
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        footer .footer-links li {
+            transition: all 0.3s ease;
+            opacity: 0.8;
+        }
+
+        footer .footer-links li:hover {
+            transform: translateX(5px);
+            opacity: 1;
+        }
+
+        /* Popular badge animation */
+        .popular-badge {
+            animation: pulse 2s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container nav">
+            <div class="logo">Subscribeify</div>
+            <div class="nav-links">
+                <a href="#" id="home-link">Home</a>
+                <a href="#" id="features-link">Features</a>
+                <a href="#" id="login-signup-link" class="btn btn-outline">Login / Sign Up</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Authentication Page (Initially Visible) -->
+    <div class="auth-page" id="auth-page">
+        <section class="hero">
+            <div class="container">
+                <h1>Welcome to Subscribeify</h1>
+                <p>Sign up or log in to explore our premium subscription plans tailored to your needs.</p>
+            </div>
+        </section>
+
+        <section class="signup">
+            <div class="container">
+                <div class="form-wrapper">
+                    <div class="auth-tabs">
+                        <div class="auth-tab active" id="login-tab">Log In</div>
+                        <div class="auth-tab" id="signup-tab">Sign Up</div>
+                    </div>
+
+                    <!-- Login Form (Initially Visible) -->
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Email Address</label>
+                            <input type="email" id="login-email" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <input type="password" id="login-password" class="form-control" required>
+                        </div>
+
+                        <div class="form-group" style="display: flex; align-items: center;">
+                            <input type="checkbox" id="remember-me" style="margin-right: 10px;">
+                            <label for="remember-me" style="margin-bottom: 0;">Remember me</label>
+                        </div>
+
+                        <button type="button" class="btn btn-block" id="login-button">Log In</button>
+
+                        <div class="form-footer">
+                            <button type="button" class="btn btn-outline" id="forgot-password-button"
+                                style="margin-top: 15px; width: 100%; padding: 10px 0;">Forgot your password?</button>
+                        </div>
+                    </form>
+
+                    <!-- Sign Up Form (Initially Hidden) -->
+                    <form id="signup-form" class="hidden">
+                        <div class="form-group">
+                            <label for="signup-name">Full Name</label>
+                            <input type="text" id="signup-name" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="signup-email">Email Address</label>
+                            <input type="email" id="signup-email" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <input type="password" id="signup-password" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="signup-confirm-password">Confirm Password</label>
+                            <input type="password" id="signup-confirm-password" class="form-control" required>
+                        </div>
+
+                        <div class="form-group" style="display: flex; align-items: center;">
+                            <input type="checkbox" id="terms" style="margin-right: 10px;" required>
+                            <label for="terms" style="margin-bottom: 0;">I agree to the Terms and Conditions</label>
+                        </div>
+
+                        <button type="button" class="btn btn-block" id="signup-button">Create Account</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Subscription Page (Initially Hidden) -->
+    <div class="subscription-page hidden" id="subscription-page">
+        <div class="confirmation" id="auth-confirmation">
+            <div class="confirmation-icon">✓</div>
+            <div>Successfully authenticated! Now you can choose your subscription plan.</div>
+        </div>
+
+        <section class="hero">
+            <div class="container">
+                <h1>Premium Plans for Every Need</h1>
+                <p>Choose the perfect subscription plan that suits your requirements and budget. Get started today!</p>
+            </div>
+        </section>
+
+        <section class="pricing" id="pricing">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Simple, Transparent Pricing</h2>
+                    <p>No hidden fees, no surprises. Choose the plan that works best for you.</p>
+                </div>
+
+                <div class="plans">
+                    <div class="plan">
+                        <div class="plan-name">Basic</div>
+                        <div class="plan-price">$9.99<span>/month</span></div>
+                        <p class="plan-description">Perfect for individuals just getting started</p>
+                        <ul class="features">
+                            <li>Basic Feature Access</li>
+                            <li>Up to 10GB Storage</li>
+                            <li>2 User Accounts</li>
+                            <li>Email Support</li>
+                        </ul>
+                        <button class="btn btn-block select-plan-btn" data-plan="basic">Select Plan</button>
+                    </div>
+
+                    <div class="plan popular">
+                        <div class="popular-badge">Most Popular</div>
+                        <div class="plan-name">Professional</div>
+                        <div class="plan-price">$24.99<span>/month</span></div>
+                        <p class="plan-description">Ideal for professionals and small teams</p>
+                        <ul class="features">
+                            <li>All Basic Features</li>
+                            <li>Up to 50GB Storage</li>
+                            <li>10 User Accounts</li>
+                            <li>Priority Support</li>
+                            <li>Advanced Analytics</li>
+                        </ul>
+                        <button class="btn btn-block select-plan-btn" data-plan="professional">Select Plan</button>
+                    </div>
+
+                    <div class="plan">
+                        <div class="plan-name">Enterprise</div>
+                        <div class="plan-price">$49.99<span>/month</span></div>
+                        <p class="plan-description">For large organizations with advanced needs</p>
+                        <ul class="features">
+                            <li>All Professional Features</li>
+                            <li>Unlimited Storage</li>
+                            <li>Unlimited Users</li>
+                            <li>24/7 Dedicated Support</li>
+                            <li>Custom Integrations</li>
+                            <li>Advanced Security</li>
+                        </ul>
+                        <button class="btn btn-block select-plan-btn" data-plan="enterprise">Select Plan</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Payment Form (Initially Hidden) -->
+    <div class="payment-page hidden" id="payment-page">
+        <section class="signup">
+            <div class="container">
+                <div class="form-wrapper" style="max-width: 600px;">
+                    <div class="confirmation" id="plan-confirmation">
+                        <div class="confirmation-icon">✓</div>
+                        <div>You've selected the <span id="selected-plan-name">Premium</span> plan. Complete payment to
+                            activate your subscription.</div>
+                    </div>
+
+                    <h3 style="margin-bottom: 20px; font-size: 24px;">Payment Details</h3>
+                    <form id="payment-form">
+                        <div class="form-group">
+                            <label for="card-holder">Cardholder Name</label>
+                            <input type="text" id="card-holder" class="form-control" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="card-number">Card Number</label>
+                            <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456"
+                                required>
+                        </div>
+
+                        <div style="display: flex; gap: 15px;">
+                            <div class="form-group" style="flex: 1;">
+                                <label for="expiry-date">Expiry Date</label>
+                                <input type="text" id="expiry-date" class="form-control" placeholder="MM/YY" required>
+                            </div>
+
+                            <div class="form-group" style="flex: 1;">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" class="form-control" placeholder="123" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="billing-address">Billing Address</label>
+                            <input type="text" id="billing-address" class="form-control" required>
+                        </div>
+
+                        <div style="display: flex; gap: 15px;">
+                            <div class="form-group" style="flex: 2;">
+                                <label for="city">City</label>
+                                <input type="text" id="city" class="form-control" required>
+                            </div>
+
+                            <div class="form-group" style="flex: 1;">
+                                <label for="zip-code">Zip Code</label>
+                                <input type="text" id="zip-code" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <select id="country" class="form-control" required>
+                                <option value="">Select your country</option>
+                                <option value="us">United States</option>
+                                <option value="ca">Canada</option>
+                                <option value="uk">United Kingdom</option>
+                                <option value="au">Australia</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group" style="display: flex; align-items: center;">
+                            <input type="checkbox" id="save-payment" style="margin-right: 10px;">
+                            <label for="save-payment" style="margin-bottom: 0;">Save payment information for future
+                                purchases</label>
+                        </div>
+
+                        <button type="button" class="btn btn-block" id="complete-payment-button">Complete
+                            Payment</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Success Page (Initially Hidden) -->
+    <div class="success-page hidden" id="success-page">
+        <section class="hero">
+            <div class="container" style="text-align: center;">
+                <div style="font-size: 80px; color: #22c55e; margin-bottom: 20px;">✓</div>
+                <h1>Payment Successful!</h1>
+                <p>Thank you for subscribing to our <span id="success-plan-name">Premium</span> plan. Your subscription
+                    is now active.</p>
+                <p style="margin-top: 20px;">A confirmation email has been sent to your email address with all the
+                    details.</p>
+                <a href="#" class="btn" style="margin-top: 30px;" id="go-to-dashboard-button">Go to Dashboard</a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Features Page (Initially Hidden) -->
+    <div class="features-page hidden" id="features-page">
+        <section class="hero">
+            <div class="container">
+                <h1>Our Features</h1>
+                <p>Discover all the premium features that come with our subscription plans.</p>
+            </div>
+        </section>
+
+        <section class="features-section" style="padding: 80px 0; background-color: #fff;">
+            <div class="container">
+                <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px;">
+                    <div class="feature-card"
+                        style="flex: 1; min-width: 280px; max-width: 350px; padding: 30px; background-color: #f8fafc; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                        <div style="font-size: 40px; color: #3b82f6; margin-bottom: 20px;">📊</div>
+                        <h3 style="font-size: 20px; margin-bottom: 15px; color: #1e293b;">Advanced Analytics</h3>
+                        <p style="color: #64748b;">Get detailed insights and analytics to track usage, performance, and
+                            ROI in real-time.</p>
+                    </div>
+
+                    <div class="feature-card"
+                        style="flex: 1; min-width: 280px; max-width: 350px; padding: 30px; background-color: #f8fafc; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                        <div style="font-size: 40px; color: #3b82f6; margin-bottom: 20px;">🔒</div>
+                        <h3 style="font-size: 20px; margin-bottom: 15px; color: #1e293b;">Enhanced Security</h3>
+                        <p style="color: #64748b;">Enterprise-grade security with encryption, two-factor authentication,
+                            and regular security audits.</p>
+                    </div>
+
+                    <div class="feature-card"
+                        style="flex: 1; min-width: 280px; max-width: 350px; padding: 30px; background-color: #f8fafc; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                        <div style="font-size: 40px; color: #3b82f6; margin-bottom: 20px;">🔄</div>
+                        <h3 style="font-size: 20px; margin-bottom: 15px; color: #1e293b;">Seamless Integration</h3>
+                        <p style="color: #64748b;">Integrate with your existing tools and workflows with our API and
+                            pre-built connectors.</p>
+                    </div>
+                </div>
+
+                <div class="row"
+                    style="display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 30px;">
+                    <div class="feature-card"
+                        style="flex: 1; min-width: 280px; max-width: 350px; padding: 30px; background-color: #f8fafc; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                        <div style="font-size: 40px; color: #3b82f6; margin-bottom: 20px;">💬</div>
+                        <h3 style="font-size: 20px; margin-bottom: 15px; color: #1e293b;">Priority Support</h3>
+                        <p style="color: #64748b;">Get faster response times and dedicated support from our expert team
+                            24/7.</p>
+                    </div>
+
+                    <div class="feature-card"
+                        style="flex: 1; min-width: 280px; max-width: 350px; padding: 30px; background-color: #f8fafc; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                        <div style="font-size: 40px; color: #3b82f6; margin-bottom: 20px;">🔍</div>
+                        <h3 style="font-size: 20px; margin-bottom: 15px; color: #1e293b;">Advanced Search</h3>
+                        <p style="color: #64748b;">Find what you need quickly with our powerful search capabilities and
+                            filtering options.</p>
+                    </div>
+
+                    <div class="feature-card"
+                        style="flex: 1; min-width: 280px; max-width: 350px; padding: 30px; background-color: #f8fafc; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                        <div style="font-size: 40px; color: #3b82f6; margin-bottom: 20px;">⚡</div>
+                        <h3 style="font-size: 20px; margin-bottom: 15px; color: #1e293b;">High Performance</h3>
+                        <p style="color: #64748b;">Experience lightning-fast performance with our optimized
+                            infrastructure and CDN.</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 50px;">
+                    <a href="#" class="btn" id="view-plans-button">View Pricing Plans</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Subscribeify</h3>
+                    <p>Premium subscription services for everyone. Choose the right plan and start your journey today.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Documentation</a></li>
+                        <li><a href="#">Support Center</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Community</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Cookie Policy</a></li>
+                        <li><a href="#">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2023 Subscribeify. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // DOM Elements
+        const authPage = document.getElementById('auth-page');
+        const subscriptionPage = document.getElementById('subscription-page');
+        const paymentPage = document.getElementById('payment-page');
+        const successPage = document.getElementById('success-page');
+        const featuresPage = document.getElementById('features-page');
+
+        const loginTab = document.getElementById('login-tab');
+        const signupTab = document.getElementById('signup-tab');
+        const loginForm = document.getElementById('login-form');
+        const signupForm = document.getElementById('signup-form');
+
+        const loginButton = document.getElementById('login-button');
+        const signupButton = document.getElementById('signup-button');
+        const loginSignupLink = document.getElementById('login-signup-link');
+        const forgotPasswordButton = document.getElementById('forgot-password-button');
+
+        const selectPlanButtons = document.querySelectorAll('.select-plan-btn');
+        const completePaymentButton = document.getElementById('complete-payment-button');
+        const goToDashboardButton = document.getElementById('go-to-dashboard-button');
+        const viewPlansButton = document.getElementById('view-plans-button');
+
+        const selectedPlanName = document.getElementById('selected-plan-name');
+        const successPlanName = document.getElementById('success-plan-name');
+
+        const homeLink = document.getElementById('home-link');
+        const featuresLink = document.getElementById('features-link');
+
+        // Form validation helpers
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validatePassword(password) {
+            return password.length >= 8;
+        }
+
+        // Switch between login and signup tabs
+        loginTab.addEventListener('click', function () {
+            loginTab.classList.add('active');
+            signupTab.classList.remove('active');
+            loginForm.classList.remove('hidden');
+            signupForm.classList.add('hidden');
+        });
+
+        signupTab.addEventListener('click', function () {
+            signupTab.classList.add('active');
+            loginTab.classList.remove('active');
+            signupForm.classList.remove('hidden');
+            loginForm.classList.add('hidden');
+        });
+
+        // Login functionality
+        loginButton.addEventListener('click', function () {
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            // Simple validation
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            if (!password) {
+                alert('Please enter your password');
+                return;
+            }
+
+            // For demo purposes, we'll just show the subscription page
+            authPage.classList.add('hidden');
+            subscriptionPage.classList.remove('hidden');
+
+            // Update the login button to show logged in state
+            loginSignupLink.textContent = 'My Account';
+            loginSignupLink.classList.add('logged-in');
+        });
+
+        // Signup functionality
+        signupButton.addEventListener('click', function () {
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-confirm-password').value;
+            const terms = document.getElementById('terms').checked;
+
+            // Simple validation
+            if (!name) {
+                alert('Please enter your name');
+                return;
+            }
+
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+
+            if (!validatePassword(password)) {
+                alert('Password must be at least 8 characters long');
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+
+            if (!terms) {
+                alert('Please accept the terms and conditions');
+                return;
+            }
+
+            // For demo purposes, we'll just show the subscription page
+            authPage.classList.add('hidden');
+            subscriptionPage.classList.remove('hidden');
+
+            // Update the login button to show logged in state
+            loginSignupLink.textContent = 'My Account';
+            loginSignupLink.classList.add('logged-in');
+        });
+
+        // View plans button in features page
+        if (viewPlansButton) {
+            viewPlansButton.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                if (loginSignupLink.classList.contains('logged-in')) {
+                    featuresPage.classList.add('hidden');
+                    subscriptionPage.classList.remove('hidden');
+                } else {
+                    featuresPage.classList.add('hidden');
+                    authPage.classList.remove('hidden');
+                }
+            });
+        }
+
+        // Plan selection functionality
+        selectPlanButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                const plan = this.getAttribute('data-plan');
+                const planElement = this.closest('.plan');
+                const planNameElement = planElement.querySelector('.plan-name');
+
+                // Set the selected plan name in the payment page
+                selectedPlanName.textContent = planNameElement.textContent;
+                successPlanName.textContent = planNameElement.textContent;
+
+                // Show the payment page
+                subscriptionPage.classList.add('hidden');
+                paymentPage.classList.remove('hidden');
+            });
+        });
+
+        // Payment form validation
+        completePaymentButton.addEventListener('click', function () {
+            const cardHolder = document.getElementById('card-holder').value;
+            const cardNumber = document.getElementById('card-number').value;
+            const expiryDate = document.getElementById('expiry-date').value;
+            const cvv = document.getElementById('cvv').value;
+            const billingAddress = document.getElementById('billing-address').value;
+            const city = document.getElementById('city').value;
+            const zipCode = document.getElementById('zip-code').value;
+            const country = document.getElementById('country').value;
+
+            // Simple validation
+            if (!cardHolder || !cardNumber || !expiryDate || !cvv || !billingAddress || !city || !zipCode || !country) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Basic card number validation
+            if (!/^\d{16}$/.test(cardNumber.replace(/\s/g, ''))) {
+                alert('Please enter a valid 16-digit card number');
+                return;
+            }
+
+            // Basic expiry date validation
+            if (!/^\d{2}\/\d{2}$/.test(expiryDate)) {
+                alert('Please enter a valid expiry date (MM/YY)');
+                return;
+            }
+
+            // Basic CVV validation
+            if (!/^\d{3,4}$/.test(cvv)) {
+                alert('Please enter a valid CVV');
+                return;
+            }
+
+            // For demo purposes, we'll just show the success page
+            paymentPage.classList.add('hidden');
+            successPage.classList.remove('hidden');
+        });
+
+        // Go to dashboard functionality
+        goToDashboardButton.addEventListener('click', function (e) {
+            e.preventDefault();
+            alert('This would take you to your dashboard. Feature not implemented in this demo.');
+        });
+
+        // Handle navigation
+        homeLink.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // If user is logged in, show subscription page
+            if (loginSignupLink.classList.contains('logged-in')) {
+                authPage.classList.add('hidden');
+                paymentPage.classList.add('hidden');
+                successPage.classList.add('hidden');
+                featuresPage.classList.add('hidden');
+                subscriptionPage.classList.remove('hidden');
+            } else {
+                // If not logged in, show auth page
+                subscriptionPage.classList.add('hidden');
+                paymentPage.classList.add('hidden');
+                successPage.classList.add('hidden');
+                featuresPage.classList.add('hidden');
+                authPage.classList.remove('hidden');
+            }
+        });
+
+        featuresLink.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // Show features page
+            authPage.classList.add('hidden');
+            subscriptionPage.classList.add('hidden');
+            paymentPage.classList.add('hidden');
+            successPage.classList.add('hidden');
+            featuresPage.classList.remove('hidden');
+        });
+
+        loginSignupLink.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            // If user is logged in, show a fake account dropdown
+            if (loginSignupLink.classList.contains('logged-in')) {
+                alert('Account management options would appear here. Not implemented in this demo.');
+            } else {
+                // If not logged in, show auth page
+                subscriptionPage.classList.add('hidden');
+                paymentPage.classList.add('hidden');
+                successPage.classList.add('hidden');
+                featuresPage.classList.add('hidden');
+                authPage.classList.remove('hidden');
+            }
+        });
+
+        // Forgot Password functionality
+        forgotPasswordButton.addEventListener('click', function () {
+            const email = document.getElementById('login-email').value;
+
+            if (!email || !validateEmail(email)) {
+                alert('Please enter a valid email address to reset your password');
+                return;
+            }
+
+            alert('Password reset instructions have been sent to your email address');
+        });
+
+        // Add intersection observer for scroll animations
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add animation class when elements come into view
+            const animateOnScroll = function () {
+                const elements = document.querySelectorAll('.plan, .feature-card, .section-title, .form-wrapper');
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.visibility = 'visible';
+                            entry.target.style.opacity = '1';
+                            entry.target.style.transform = 'translateY(0)';
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+
+                elements.forEach(el => {
+                    el.style.visibility = 'hidden';
+                    el.style.opacity = '0';
+                    el.style.transform = 'translateY(20px)';
+                    el.style.transition = 'all 0.6s ease-out';
+                    observer.observe(el);
+                });
+            };
+
+            // Run the animation function
+            setTimeout(animateOnScroll, 500);
+
+            // Add button click effects
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function (e) {
+                    const rect = button.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    const ripple = document.createElement('span');
+                    ripple.style.position = 'absolute';
+                    ripple.style.background = 'rgba(255, 255, 255, 0.7)';
+                    ripple.style.borderRadius = '50%';
+                    ripple.style.width = '100px';
+                    ripple.style.height = '100px';
+                    ripple.style.top = y + 'px';
+                    ripple.style.left = x + 'px';
+                    ripple.style.transform = 'translate(-50%, -50%) scale(0)';
+                    ripple.style.animation = 'ripple 0.6s linear';
+
+                    button.appendChild(ripple);
+
+                    setTimeout(() => {
+                        ripple.remove();
+                    }, 600);
+                });
+            });
+
+            // Add ripple effect keyframes
+            const style = document.createElement('style');
+            style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: translate(-50%, -50%) scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+            document.head.appendChild(style);
+        });
+    </script>
+</body>
+
+</html>
